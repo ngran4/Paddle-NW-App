@@ -18,7 +18,7 @@ function App() {
     userService.logout();
     setUser(null);
   }
-
+// if user is logged in
   if (user) {
     return (
       <Routes>
@@ -34,7 +34,7 @@ function App() {
       </Routes>
     );
   }
-
+// if user is not logged in
   return (
     <Routes>
       <Route
