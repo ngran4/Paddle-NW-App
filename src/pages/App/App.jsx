@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { MantineProvider } from '@mantine/core';
 import "./App.css";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
+import HomePage from "../Home/Home"
 import userService from "../../utils/userService";
 
 function App() {
@@ -21,8 +23,25 @@ function App() {
 // if user is logged in
   if (user) {
     return (
+      <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/login"
+            element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+          />
+          <Route
+            path="/signup"
+            element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+          />
+        </Routes>
+      </MantineProvider>
+    );
+  }
+// if user is not logged in
+  return (
+    <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
       <Routes>
-        <Route path="/" element={<h1>This is Home Page!</h1>} />
         <Route
           path="/login"
           element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
@@ -31,22 +50,9 @@ function App() {
           path="/signup"
           element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
         />
+        <Route path="/*" element={<Navigate to="/login" />} />
       </Routes>
-    );
-  }
-// if user is not logged in
-  return (
-    <Routes>
-      <Route
-        path="/login"
-        element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
-      />
-      <Route
-        path="/signup"
-        element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
-      />
-      <Route path="/*" element={<Navigate to="/login" />} />
-    </Routes>
+    </MantineProvider>
   );
 }
 
