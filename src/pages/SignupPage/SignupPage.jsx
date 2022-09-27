@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useForm } from '@mantine/form';
+import { useNavigate } from "react-router-dom";
 import {
   Paper,
   createStyles,
@@ -9,11 +9,9 @@ import {
   Button,
   Title,
   Text,
-  Anchor,
 } from '@mantine/core';
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import userService from "../../utils/userService";
-import { useNavigate } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -127,57 +125,58 @@ export default function SignUpPage(props) {
         <Title order={2} className={classes.title} align="center" mt="md" mb={50}>
           Sign Up
         </Title>
-            <TextInput
-              label="Username"
-              required
-              name="username"
-              placeholder="username"
-              value={state.username}
-              onChange={handleChange}
-              size="md"
-            />
-            <TextInput
-              label="Email"
-              required
-              name="email"
-              placeholder=" enter your email"
-              value={state.email}
-              onChange={handleChange}
-              size="md"
-              mt="md" 
-            />
-            <PasswordInput
-              label="Password"
-              required
-              name="password"
-              placeholder="password"
-              value={state.password}
-              onChange={handleChange}
-              size="md"
-              mt="md" 
-            />  
-            <Text className="input-hint" align="left" size="xs">
-              Password must be unique and at least 11 characters
-            </Text>
-            <PasswordInput
-              label="Password Confirmation"
-              required
-              name="passwordConf"
-              placeholder="confirm password"
-              value={state.passwordConf}
-              onChange={handleChange}
-              size="md"
-              mt="md" 
-            />
-            <FileInput
-                label="Profile picture"
-                name="photo"
-                placeholder="upload a profile photo"
-                onChange={handleFileInput}
-              />
-            <Button fullWidth mt="xl" size="md" type="submit">
-              Sign Up
-            </Button>
+        <TextInput
+          label="Username"
+          required
+          name="username"
+          placeholder="username"
+          value={state.username}
+          onChange={handleChange}
+          size="md"
+        />
+        <TextInput
+          label="Email"
+          required
+          name="email"
+          placeholder=" enter your email"
+          value={state.email}
+          onChange={handleChange}
+          size="md"
+          mt="md" 
+        />
+        <PasswordInput
+          label="Password"
+          required
+          name="password"
+          placeholder="password"
+          value={state.password}
+          onChange={handleChange}
+          size="md"
+          mt="md" 
+        />  
+        <Text className="input-hint" align="left" size="xs">
+          Password must be unique and at least 11 characters
+        </Text>
+        <PasswordInput
+          label="Password Confirmation"
+          required
+          name="passwordConf"
+          placeholder="confirm password"
+          value={state.passwordConf}
+          onChange={handleChange}
+          size="md"
+          mt="md" 
+        />
+        <FileInput
+            label="Profile picture"
+            name="photo"
+            placeholder="upload a profile photo"
+            onChange={handleFileInput}
+          />
+        <Button fullWidth mt="xl" size="md" type="submit">
+          Sign Up
+        </Button>
+        {error.message ? <ErrorMessage error={error.message} /> : null}
         </Paper>
       </form>
     </div>
