@@ -1,7 +1,7 @@
 import React from 'react';
-import { createStyles, Header, Container, Text, Button } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import { Link } from "react-router-dom";
+// import { createStyles, Header, Container, Text, Button } from '@mantine/core';
+// import { useDisclosure } from '@mantine/hooks';
+// import { Link } from "react-router-dom";
 
 // -------------------------- STYLING -------------------------- //
 

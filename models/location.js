@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 const photoSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   photoUrl: String,
 })
 
@@ -31,7 +31,7 @@ const mapItemSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  photos: [photoSchema]
+  photoUrl: [photoSchema]
 });
 
 const MapItem = mongoose.model('MapItem', mapItemSchema);

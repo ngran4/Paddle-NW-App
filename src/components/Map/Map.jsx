@@ -4,7 +4,7 @@ import mapboxgl from 'mapbox-gl';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibmljZ3JhbnZpbGxlIiwiYSI6ImNsOGtvMWF3cjAwOG8zcHFqbHNncGJsaTEifQ.a3Eza0hWXvPF9UxW3lR3HA';
 
-
+// -------------------------- FUNCTION -------------------------- //
 
 export default function Map({ locations }) {
 
@@ -23,8 +23,8 @@ export default function Map({ locations }) {
       zoom: zoom
     });
 
-    console.log(map.current)
-    console.log(locations, 'locations first UE')
+    // console.log(map.current)
+    // console.log(locations, 'locations first UE')
 
   });
 
@@ -40,11 +40,11 @@ export default function Map({ locations }) {
 
   useEffect(() => {
     if (!map.current) return;
-    console.log(map.current, 'current map')
-    console.log(locations, 'locations second UE')
+    // console.log(map.current, 'current map')
+    // console.log(locations, 'locations second UE')
 
     if (!locations.length) return;
-    console.log(locations[0].location.coordinates, 'locations0')
+    // console.log(locations[0].location.coordinates, 'locations0')
 
     locations.map((point) => {
       let marker = new mapboxgl.Marker()

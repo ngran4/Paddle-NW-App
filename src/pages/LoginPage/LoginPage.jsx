@@ -5,11 +5,10 @@ import {
   createStyles,
   TextInput,
   PasswordInput,
-  FileInput,
   Button,
   Title,
-  Text,
-  Anchor,
+  // Text,
+  // Anchor,
 } from '@mantine/core';
 
 // import "./LoginPage.css";
