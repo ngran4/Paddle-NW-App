@@ -6,15 +6,30 @@ import mapboxgl from 'mapbox-gl';
 import Map from "../../components/Map/Map"
 
 export default function Home() {
-  const [mapItems, setMapItems] = useState([]);
+  const [locations, setLocations] = useState([]);
 
+  useEffect(() => {    
+    async function getLocations() {
+      try {
+        const response = await fetch('/api/locations');
+        const data = await response.json();
+        
+        console.log(data, 'this is data');
+        setLocations([...data.data]);
+
+      } catch (err) {
+        console.log(err, 'error fetching from DB')
+      }
+    }
+    getLocations();
+  }, [])
 
 
   // render map comp in home 
   return (
     // <h1>{mapItems[0].name}</h1>
     <>
-      <Map />
+      <Map locations={locations} />
     </>
 
   )

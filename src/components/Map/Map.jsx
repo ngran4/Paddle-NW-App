@@ -6,13 +6,12 @@ mapboxgl.accessToken = 'pk.eyJ1IjoibmljZ3JhbnZpbGxlIiwiYSI6ImNsOGtvMWF3cjAwOG8zc
 
 
 
-export default function Map() {
-  // const [locations, setLocations] = useState(locationsArr);
+export default function Map({ locations }) {
 
   const mapContainer = useRef(null);
   const map = useRef(null);
-  const [lng, setLng] = useState(-70.9);
-  const [lat, setLat] = useState(42.35);
+  const [lng, setLng] = useState(-122.67);
+  const [lat, setLat] = useState(45.52);
   const [zoom, setZoom] = useState(9);
 
   useEffect(() => {
@@ -24,18 +23,37 @@ export default function Map() {
       zoom: zoom
     });
 
+    console.log(map.current)
+    console.log(locations, 'locations first UE')
+
+  });
+
+  useEffect(() => {
     if (!map.current) return; // wait for map to initialize
     map.current.on('move', () => {
       setLng(map.current.getCenter().lng.toFixed(4));
       setLat(map.current.getCenter().lat.toFixed(4));
       setZoom(map.current.getZoom().toFixed(2));
     });
+  })
 
-    // const marker1 = new mapboxgl.Marker()
-    // .setLngLat([12.554729, 55.70651])
-    // .addTo(map);
 
-  });
+  useEffect(() => {
+    if (!map.current) return;
+    console.log(map.current, 'current map')
+    console.log(locations, 'locations second UE')
+
+    if (!locations.length) return;
+    console.log(locations[0].location.coordinates, 'locations0')
+
+    locations.map((point) => {
+      let marker = new mapboxgl.Marker()
+        .setLngLat(point.location.coordinates)
+        .addTo(map.current)
+    });
+
+
+  }, [locations.length])
 
   return (
     <div>
@@ -44,8 +62,3 @@ export default function Map() {
   )
 }
 
-
-// it will be inside a useEffect
-// inside of that useEffect, you’re going to loop over
-// props that you sending to the map component, which have the lng and lat
-// inside of the loop:

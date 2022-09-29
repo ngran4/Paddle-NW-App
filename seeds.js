@@ -16,38 +16,53 @@ db.on('connected', function() {
 const seedLocations = [
   {
     "name": "Trillium Lake",
-    "location": "Trillium Lake Rd",
+    "address": "Trillium Lake Rd",
     "city": "Government Camp",
     "state": "Oregon",
-    "coordinates": [45.26748089955289, -121.73836985979973]
+    "location":{
+      type: 'Point',
+      coordinates: [-121.73836985979973, 45.26748089955289]
+    } 
   },
   {
     "name": "Willamette Park",
-    "location": "6500 S Macadam Ave",
+    "address": "6500 S Macadam Ave",
     "city": "Portland",
     "state": "Oregon",
-    "coordinates": [45.477267247666695, -122.67068955875128]
+    "location":{
+      type: 'Point',
+      coordinates: [-122.67068955875128, 45.477267247666695]
+    } 
   },
   {
     "name": "Lost Lake",
-    "location": "9000 Lost Lake Rd",
+    "address": "9000 Lost Lake Rd",
     "city": "Hood River",
     "state": "Oregon",
-    "coordinates": [45.496615746264915, -121.81837714303343]
+    "location":{
+      type: 'Point',
+      coordinates: [-121.81837714303343, 45.496615746264915]
+    } 
   },
   {
     "name": "Frog Lake",
-    "location": "Frog Lake Trail #530",
+    "address": "Frog Lake Trail #530",
     "city": "Government",
     "state": "Oregon",
-    "coordinates": [45.222743932556156, -121.69212115243987]
+    "location":{
+      type: 'Point',
+      coordinates: [-121.69212115243987, 45.222743932556156]
+    } 
   },
   {
     "name": "Tualatin River - Browns Ferry PArk",
-    "location": "5855 SW Nyberg Ln",
+    "address": "5855 SW Nyberg Ln",
     "city": "Tualatin",
     "state": "Oregon",
-    "coordinates": [45.38386168331337, -122.73798368013878]
+    "location":{
+      type: 'Point',
+      coordinates: [-122.73798368013878, 45.38386168331337]
+    } 
   },
 ]
 

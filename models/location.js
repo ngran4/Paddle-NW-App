@@ -11,7 +11,7 @@ const mapItemSchema = new mongoose.Schema({
     type: String,
     unique: true,
   },
-  location: {
+  address: {
     type: String,
   },
   city: {
@@ -20,8 +20,12 @@ const mapItemSchema = new mongoose.Schema({
   state: {
     type: String
   },
-  coodrinates: {
-    type: [Number], 
+  location: {
+    type: {type: String, default: 'Point'},
+    // Default value is needed. Mongoose pass an empty array to
+    // array type by default, but it will fail MongoDB's pre-save
+    // validation.
+    coordinates: {type: [Number], default: [0, 0]}
   },
   createdAt: {
     type: Date,
