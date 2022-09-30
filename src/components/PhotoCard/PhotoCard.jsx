@@ -13,7 +13,7 @@ import * as photosAPI from "../../utils/photosApi"
 export default function PhotoCard({ location, addPhoto, addRating, removeRating, loggedUser }) {
   const [selectedFile, setSelectedFile] = useState("");
 
-  console.log(location.ratings)
+  
 
   const ratingIndex = location.ratings.findIndex(
     (rating) => rating.username === loggedUser.username
@@ -38,14 +38,21 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
     formData.append('photo', selectedFile)
     addPhoto(location._id, formData)
 
-    console.log(formData, 'this is form data')
   }
+
+  console.log(location?.photoUrl[0]?.photoUrl, 'location photo url')
+  // console.log(location, 'location')
+
+  const locationUrl = `${location?.photoUrl[0]?.photoUrl}`
+
+
+  console.log(location, 'location')
 
   return (
 
     <Card key={location._id} p="md" radius="md">
       <AspectRatio ratio={1920 / 1080}>
-      {/* <Image src={`${location?.photoUrl}`} wrapped ui={false} /> */}
+        <Image src={locationUrl} />
       </AspectRatio>
       <Text color="dimmed" size="xs" transform="uppercase" weight={700} mt="md">
         {location.name}
