@@ -45,7 +45,7 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
 
     <Card key={location._id} p="md" radius="md">
       <AspectRatio ratio={1920 / 1080}>
-        {/* <Image src={`${}`} /> */}
+      {/* <Image src={`${location?.photoUrl}`} wrapped ui={false} /> */}
       </AspectRatio>
       <Text color="dimmed" size="xs" transform="uppercase" weight={700} mt="md">
         {location.name}
