@@ -15,15 +15,15 @@ export default function Home({ loggedUser, handleLogout }) {
   const [locations, setLocations] = useState([]);
   const [error, setError] = useState("");
 
-  async function addPhoto(locationId){
+  async function addPhoto(locationId, photo){
     try {
-      const response = await photosAPI.create(locationId);
+      const response = await photosAPI.create(locationId, photo);
       console.log(response, 'res from add photo');
       getLocations();
     } catch (err) {
       console.log(err)
     }
-  }
+  };
 
   async function addRating(locationId) {
 
@@ -35,7 +35,7 @@ export default function Home({ loggedUser, handleLogout }) {
       console.log(err, " err from server");
       setError("error adding rating");
     }
-  }
+  };
 
   async function removeRating(ratingId) {
     try {
@@ -46,7 +46,7 @@ export default function Home({ loggedUser, handleLogout }) {
       console.log(err);
       setError("error removing rating");
     }
-  }
+  };
 
   async function getLocations() {
     try {
@@ -59,12 +59,12 @@ export default function Home({ loggedUser, handleLogout }) {
     } catch (err) {
       console.log(err, 'error fetching from DB')
     }
-  }
+  };
 
   useEffect(() => {    
 
     getLocations();
-  }, [])
+  }, []);
 
 
   // render map comp in home 

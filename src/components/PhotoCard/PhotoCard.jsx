@@ -36,7 +36,7 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
 
     const formData = new FormData();
     formData.append('photo', selectedFile)
-    // addPhoto(formData)
+    addPhoto()
 
     console.log(formData, 'this is form data')
   }

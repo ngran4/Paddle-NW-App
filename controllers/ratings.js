@@ -21,7 +21,7 @@ async function deleteRating(req, res){
       
       const location = await Location.findOne({'ratings._id': req.params.id, 'ratings.username': req.user.username});
       location.ratings.remove(req.params.id) 
-      await location.save() // after you mutate a document you must save
+      await location.save() 
       res.json({data: 'rating removed'})
   } catch(err){
       res.status(400).json({error: err})

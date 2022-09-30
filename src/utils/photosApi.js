@@ -2,10 +2,10 @@ import tokenService from "./tokenService";
 
 const BASE_URL = "/api/";
 
-export function create(locationId){
+export function create(locationId, photo){
   return fetch(`${BASE_URL}locations/${locationId}/photos`, {
     method: "POST",
-    // body: 
+    body: photo,
     header: {
       Authorization: "Bearer " + tokenService.getToken(),
     },
