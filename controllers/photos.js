@@ -27,11 +27,12 @@ function create(req, res){
     try {
       // Using our model to create a document in the posts collection in mongodb
       const location = await Location.findById(req.params.id);
-      location.photos.push({ userId: req.user._id, photoUrl: data.Location});
+      location.photoUrl.push({ userId: req.user._id, photoUrl: data.Location});
       await location.save()
       res.status(201).json({data: 'photo added'})
 
     } catch (err) {
+      console.log(err);
       res.status(400).json({ err });
     }
   });

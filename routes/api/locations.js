@@ -4,4 +4,5 @@ const locationsCtrl = require('../../controllers/locations');
 
 router.get('/', locationsCtrl.index);
 
+
 module.exports = router;

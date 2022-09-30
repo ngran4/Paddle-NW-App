@@ -36,14 +36,14 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
 
     const formData = new FormData();
     formData.append('photo', selectedFile)
-    addPhoto(location._id, photo)
+    addPhoto(location._id, formData)
 
     console.log(formData, 'this is form data')
   }
 
   return (
 
-    <Card key={location._id} p="md" radius="md" component="a" href="#">
+    <Card key={location._id} p="md" radius="md">
       <AspectRatio ratio={1920 / 1080}>
         {/* <Image src={`${}`} /> */}
       </AspectRatio>

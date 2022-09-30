@@ -6,7 +6,7 @@ export function create(locationId, photo){
   return fetch(`${BASE_URL}locations/${locationId}/photos`, {
     method: "POST",
     body: photo,
-    header: {
+    headers: {
       Authorization: "Bearer " + tokenService.getToken(),
     },
   }).then((res) => {

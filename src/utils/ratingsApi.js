@@ -18,7 +18,9 @@ export function create(locationId) {
 export function removeRating(ratingId) {
   return fetch(`${BASE_URL}ratings/${ratingId}`, {
     method: "DELETE",
-    Authorization: "Bearer " + tokenService.getToken(),
+    headers: {
+      Authorization: "Bearer " + tokenService.getToken(),
+    }
 }).then((res) => {
   if (res.ok) return res.json();
   throw new Error(res.error);
