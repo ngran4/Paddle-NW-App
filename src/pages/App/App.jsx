@@ -20,12 +20,13 @@ function App() {
     userService.logout();
     setUser(null);
   }
+
 // if user is logged in
   if (user) {
     return (
       <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage loggedUser={user} handleLogout={handleLogout} />} />
           <Route
             path="/login"
             element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}

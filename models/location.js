@@ -6,6 +6,11 @@ const photoSchema = new mongoose.Schema({
   photoUrl: String,
 })
 
+const ratingSchema = new mongoose.Schema({
+  username: String,
+  userId: { type: mongoose.Schema.Types.ObjectId }
+})
+
 const mapItemSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -31,7 +36,8 @@ const mapItemSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  photoUrl: [photoSchema]
+  photoUrl: [photoSchema],
+  ratings: [ratingSchema] 
 });
 
 const MapItem = mongoose.model('MapItem', mapItemSchema);
