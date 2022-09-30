@@ -79,6 +79,7 @@ export default function Home({ loggedUser, handleLogout }) {
   }
   return (
     <>
+        <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
         <Map locations={locations} />
         <LocationGallery locations={locations} addPhoto={addPhoto} addRating={addRating} removeRating={removeRating} loggedUser={loggedUser} />
     </>

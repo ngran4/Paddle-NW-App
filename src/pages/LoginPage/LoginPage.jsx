@@ -7,8 +7,7 @@ import {
   PasswordInput,
   Button,
   Title,
-  // Text,
-  // Anchor,
+  Text,
 } from '@mantine/core';
 
 // import "./LoginPage.css";
@@ -113,12 +112,10 @@ export default function LoginPage(props) {
         <Button fullWidth mt="xl" size="md" type="submit">
           Login
         </Button>
-        {/* <Text align="center" mt="md">
-          Don&apos;t have an account?{' '}
-          <Anchor<'a'> href="#" weight={700} onClick={(event) => event.preventDefault()}>
-            Register
-          </Anchor>
-        </Text> */}
+        <Text align="center" mt="md">
+          New to us?{' '}
+          <Link to="/signup">Sign Up</Link>
+        </Text>
       </Paper>
       {error ? <ErrorMessage error={error} /> : null}
       </form>
