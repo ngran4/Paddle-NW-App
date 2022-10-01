@@ -1,19 +1,27 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import { createStyles, Header, Container, Text, Button } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { Link } from "react-router-dom";
 
 // -------------------------- FUNCTION -------------------------- // 
 
-export default function PageHeader({ loggedUser, handleLogout}) {
+export default function PageHeader({ loggedUser, handleLogout }) {
   const { classes } = useStyles();
+  const navigate = useNavigate();
 
+  function goHome() {
+    navigate('/')
+  }
 
   return (
     <Header height={40} className={classes.header}>
       <nav>
-        <Link to="" onClick={handleLogout}>Logout</Link>
-        <Link to="/">Home</Link>
+        <Button onClick={goHome}>
+          Home
+        </Button>
+        <Button onClick={handleLogout}>
+          Logout
+        </Button>
       </nav>
     </Header>
   )
@@ -21,14 +29,10 @@ export default function PageHeader({ loggedUser, handleLogout}) {
 
 
 // -------------------------- STYLING -------------------------- //
-
 const useStyles = createStyles((theme) => ({
   header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: '100%',
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    backgroundColor: theme.fn.variant({ variant: 'filled', color: theme.primaryColor }).background,
+    borderBottom: 0,
   },
 
   inner: {

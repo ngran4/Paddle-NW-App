@@ -53,7 +53,7 @@ export default function Home({ loggedUser, handleLogout }) {
       const response = await fetch('/api/locations');
       const data = await response.json();
       
-      console.log(data, 'this is data');
+      // console.log(data, 'this is data');
       setLocations([...data.data]);
 
     } catch (err) {
