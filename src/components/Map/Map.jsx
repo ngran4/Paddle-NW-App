@@ -6,7 +6,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoibmljZ3JhbnZpbGxlIiwiYSI6ImNsOGtvMWF3cjAwOG8zc
 
 // -------------------------- FUNCTION -------------------------- //
 
-export default function Map({ locations }) {
+export default function Map({ locations, handleToggleMap }) {
 
   const mapContainer = useRef(null);
   const map = useRef(null);

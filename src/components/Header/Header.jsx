@@ -1,11 +1,12 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-import { createStyles, Header, Container, Text, Button } from '@mantine/core';
+import { createStyles, Header, Container, Text, Button, ActionIcon, Group } from '@mantine/core';
+import { IconMap, IconLayoutList } from '@tabler/icons';
 import { useDisclosure } from '@mantine/hooks';
 
 // -------------------------- FUNCTION -------------------------- // 
 
-export default function PageHeader({ loggedUser, handleLogout }) {
+export default function PageHeader({ loggedUser, handleLogout, handleToggleMap }) {
   const { classes } = useStyles();
   const navigate = useNavigate();
 
@@ -13,15 +14,21 @@ export default function PageHeader({ loggedUser, handleLogout }) {
     navigate('/')
   }
 
+  const mapIconColor = "white";
+
   return (
     <Header height={40} className={classes.header}>
       <nav>
-        <Button onClick={goHome}>
-          Home
-        </Button>
+        {/* <Group position="left">
+          <ActionIcon>
+            <IconMap size={100} color={mapIconColor} stroke={1.5} onClick={handleToggleMap}/>
+          </ActionIcon>
+        </Group> */}
+        <Group position="right" >
         <Button onClick={handleLogout}>
           Logout
         </Button>
+        </Group>
       </nav>
     </Header>
   )

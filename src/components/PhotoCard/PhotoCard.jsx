@@ -13,8 +13,7 @@ import {
   ActionIcon,
   Indicator
 } from '@mantine/core';
-import { IconHeart } from '@tabler/icons';
-// import { FileButton, Button, Group, Text } from '@mantine/core';
+import { IconHeart, IconMap } from '@tabler/icons';
 import { Carousel } from '@mantine/carousel';
 // import { IconStar } from '@tabler/icons';
 
@@ -25,9 +24,9 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
   const { classes } = useStyles();
   const [selectedFile, setSelectedFile] = useState("");
 
-  // const locationPhotoUrl = location?.photoUrl[0]?.photoUrl
+  // const slides = location[0]?.photoUrl[0]?.photoUrl
 
-  console.log(location?.photoUrl[0]?.photoUrl, 'location photo url')
+  // console.log(location[0]?.photoUrl[0]?.photoUrl, 'location photo url')
 
   // const slides = location?.photoUrl?.map((image) => {
   //   <Carousel.Slide key={image}>
@@ -89,8 +88,8 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
 
   return (
     <Card key={location._id} withBorder p="xl" radius="md">
-      {/* <Card.Section>
-        <Carousel
+      <Card.Section>
+        {/* <Carousel
           withIndicators
           loop
           classNames={{
@@ -100,8 +99,8 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
           }}
         >
           {slides}
-        </Carousel>
-      </Card.Section> */}
+        </Carousel> */}
+      </Card.Section>
 
       <Group position="apart" mt="lg">
         <Text weight={500} size="lg">
@@ -141,21 +140,6 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
 
 
 // -------------------------- STYLING -------------------------- //
-// const useStyles = createStyles((theme) => ({
-//   card: {
-//     transition: 'transform 150ms ease, box-shadow 150ms ease',
-
-//     '&:hover': {
-//       transform: 'scale(1.01)',
-//       boxShadow: theme.shadows.md,
-//     },
-//   },
-
-//   title: {
-//     fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-//     fontWeight: 600,
-//   },
-// }));
 
 const useStyles = createStyles((theme, _params, getRef) => ({
   price: {

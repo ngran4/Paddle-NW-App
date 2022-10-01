@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-// import { Grid } from '@mantine/core';
+import { Grid, ActionIcon, Group } from '@mantine/core';
+import { IconMap, IconLayoutList } from '@tabler/icons';
 import PageHeader from "../../components/Header/Header";
-import AddPhoto from "../../components/AddPhoto/AddPhoto";
 import LocationGallery from "../../components/LocationGallery/LocationGallery";
-
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 import * as photosAPI from "../../utils/photosApi";
@@ -13,9 +12,23 @@ import Map from "../../components/Map/Map"
 
 export default function Home({ loggedUser, handleLogout }) {
   const [locations, setLocations] = useState([]);
+  const [toggleMap, setToggleMap] = useState(false);
+  const [toggleList, setToggleList] = useState(true);
   const [error, setError] = useState("");
 
-  async function addPhoto(locationId, photo){
+  function handleToggleMap() {
+    setToggleMap(!toggleMap)
+    setToggleList(!toggleList)
+  };
+
+  function handleToggleList() {
+    setToggleList(!toggleList)
+    setToggleMap(!toggleMap)
+  }
+
+  const mapIconColor = "white";
+
+  async function addPhoto(locationId, photo) {
     try {
       const response = await photosAPI.create(locationId, photo);
       console.log(response, 'res from add photo');
@@ -52,7 +65,7 @@ export default function Home({ loggedUser, handleLogout }) {
     try {
       const response = await fetch('/api/locations');
       const data = await response.json();
-      
+
       // console.log(data, 'this is data');
       setLocations([...data.data]);
 
@@ -61,13 +74,11 @@ export default function Home({ loggedUser, handleLogout }) {
     }
   };
 
-  useEffect(() => {    
+  useEffect(() => {
 
     getLocations();
   }, []);
 
-
-  // render map comp in home 
 
   if (error) {
     return (
@@ -79,9 +90,27 @@ export default function Home({ loggedUser, handleLogout }) {
   }
   return (
     <>
-        <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
-        <Map locations={locations} />
-        <LocationGallery locations={locations} addPhoto={addPhoto} addRating={addRating} removeRating={removeRating} loggedUser={loggedUser} />
+      <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
+      <Group position="right">
+        <ActionIcon>
+          <IconMap size={100} color={mapIconColor} stroke={1.5} onClick={handleToggleMap} />
+        </ActionIcon>
+        <ActionIcon>
+          <IconLayoutList size={100} color={mapIconColor} stroke={1.5} onClick={handleToggleList} />
+        </ActionIcon>
+      </Group>
+
+      {toggleMap && (
+        <Group position="center">
+          <Map locations={locations} />
+        </Group>
+      )}
+      { toggleList && (
+        <Group position="center">
+          <LocationGallery locations={locations} addPhoto={addPhoto} addRating={addRating} removeRating={removeRating} loggedUser={loggedUser} />
+        </Group>
+      )}
+
     </>
   )
 }
