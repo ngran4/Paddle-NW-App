@@ -24,6 +24,8 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
   const { classes } = useStyles();
   const [selectedFile, setSelectedFile] = useState("");
 
+  const cover = `${location?.cover}`
+
   // const slides = location[0]?.photoUrl[0]?.photoUrl
 
   // console.log(location[0]?.photoUrl[0]?.photoUrl, 'location photo url')
@@ -89,17 +91,9 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
   return (
     <Card key={location._id} withBorder p="xl" radius="md">
       <Card.Section>
-        {/* <Carousel
-          withIndicators
-          loop
-          classNames={{
-            root: classes.carousel,
-            controls: classes.carouselControls,
-            indicator: classes.carouselIndicator,
-          }}
-        >
-          {slides}
-        </Carousel> */}
+      <AspectRatio ratio={1920 / 1080}>
+        <Image src={cover} />
+      </AspectRatio>
       </Card.Section>
 
       <Group position="apart" mt="lg">
@@ -116,27 +110,28 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
         </Group>
       </Group>
 
-      <Group position="apart" mt="md">
+      <Group position="apart" mt="sm">
         <form autoComplete="off" onSubmit={handleSubmit}>
           <FileInput
             placeholder="Choose File"
             className="form-control"
-            name="playlist-cover"
+            name="add-photo"
             type="file"
             onChange={handleFileInput}
             label="Upload Photo"
             required
             withAsterisk
           />
-          <Button radius="md" type="submit">
-            Submit
-          </Button>
+          <Group spacing={5}>
+            <Button radius="sm" type="submit">
+              Submit
+            </Button>
+          </Group>
         </form>
       </Group>
     </Card>
   )
 }
-
 
 
 // -------------------------- STYLING -------------------------- //
@@ -145,59 +140,53 @@ const useStyles = createStyles((theme, _params, getRef) => ({
   price: {
     color: theme.colorScheme === 'dark' ? theme.white : theme.black,
   },
-
-  carousel: {
-    '&:hover': {
-      [`& .${getRef('carouselControls')}`]: {
-        opacity: 1,
-      },
-    },
-  },
-
-  carouselControls: {
-    ref: getRef('carouselControls'),
-    transition: 'opacity 150ms ease',
-    opacity: 0,
-  },
-
-  carouselIndicator: {
-    width: 4,
-    height: 4,
-    transition: 'width 250ms ease',
-
-    '&[data-active]': {
-      width: 16,
-    },
-  },
 }));
 
 
 
-{/* <AspectRatio ratio={1920 / 1080}>
-<Image src={locationUrl} />
-</AspectRatio>
-<Text color="dimmed" size="xs" transform="uppercase" weight={700} mt="md">
-{location.name}
-</Text>
-<Group>
-<Indicator label={ratingCount} inline size={15} >
-  <ActionIcon>
-    <IconHeart size={100} color={ratingColor} stroke={1.5} onClick={clickHandler} />
-  </ActionIcon>
-</Indicator>
-</Group>
-<form autoComplete="off" onSubmit={handleSubmit}>
-<FileInput
-  placeholder="Choose File"
-  className="form-control"
-  name="playlist-cover"
-  type="file"
-  onChange={handleFileInput}
-  label="Upload Photo"
-  required
-  withAsterisk
-/>
-<Button type="submit">
-  Submit
-</Button>
-</form> */}
+
+// {/* <Card.Section>
+// {/* <Carousel
+//   withIndicators
+//   loop
+//   classNames={{
+//     root: classes.carousel,
+//     controls: classes.carouselControls,
+//     indicator: classes.carouselIndicator,
+//   }}
+// >
+//   {slides}
+// </Carousel> */}
+// </Card.Section>
+
+// <Group position="apart" mt="lg">
+// <Text weight={500} size="lg">
+//   {location.name}
+// </Text>
+
+// <Group spacing={5}>
+//   <Indicator label={ratingCount} inline size={15} >
+//     <ActionIcon>
+//       <IconHeart size={100} color={ratingColor} stroke={1.5} onClick={clickHandler} />
+//     </ActionIcon>
+//   </Indicator>
+// </Group>
+// </Group>
+
+// <Group position="apart" mt="md">
+// <form autoComplete="off" onSubmit={handleSubmit}>
+//   <FileInput
+//     placeholder="Choose File"
+//     className="form-control"
+//     name="playlist-cover"
+//     type="file"
+//     onChange={handleFileInput}
+//     label="Upload Photo"
+//     required
+//     withAsterisk
+//   />
+//   <Button radius="md" type="submit">
+//     Submit
+//   </Button>
+// </form>
+// </Group> */}

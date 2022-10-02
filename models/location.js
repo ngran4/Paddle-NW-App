@@ -36,6 +36,7 @@ const mapItemSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  cover: String,
   photoUrl: [photoSchema],
   ratings: [ratingSchema] 
 });
