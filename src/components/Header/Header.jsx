@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { createStyles, Header, Container, Text, Button, ActionIcon, Group } from '@mantine/core';
-import { IconMap, IconLayoutList } from '@tabler/icons';
+import { IconKayak} from '@tabler/icons';
 import { useDisclosure } from '@mantine/hooks';
 
 // -------------------------- FUNCTION -------------------------- // 
@@ -14,19 +14,25 @@ export default function PageHeader({ loggedUser, handleLogout, handleToggleMap }
   const mapIconColor = "white";
 
   return (
-    <Header height={40} className={classes.header}>
-      <nav>
+    <Header height={50} className={classes.header}>
         {/* <Group position="left">
           <ActionIcon>
             <IconMap size={100} color={mapIconColor} stroke={1.5} onClick={handleToggleMap}/>
           </ActionIcon>
         </Group> */}
-        <Group position="right" >
-        <Button onClick={handleLogout}>
+        <Group position="apart">
+        <Group>
+        <ActionIcon className={classes.icon}>
+            <IconKayak size={100} color={mapIconColor} stroke={1.5} onClick={handleToggleMap}/>
+          </ActionIcon>
+        <Text className={classes.name}>
+        PaddleNW
+        </Text>
+        </Group>
+        <Button onClick={handleLogout} className={classes.button} color="dark">
           Logout
         </Button>
         </Group>
-      </nav>
     </Header>
   )
 }
@@ -35,15 +41,29 @@ export default function PageHeader({ loggedUser, handleLogout, handleToggleMap }
 // -------------------------- STYLING -------------------------- //
 const useStyles = createStyles((theme) => ({
   header: {
-    backgroundColor: theme.fn.variant({ variant: 'filled', color: theme.primaryColor }).background,
+    backgroundColor: theme.fn.variant({ variant: 'filled', color: "dark" }).background,
     borderBottom: 0,
   },
 
   inner: {
-    height: 0,
+    height: 10,
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+
+  name: {
+    marginTop: 8,
+    fontSize: 20,
+    fontWeight: 400,
+    color: "white",
+  },
+  icon: {
+    marginTop: 8,
+    marginLeft: 15,
+  },
+  button: {
+    marginTop: 5,
+  }
 
 }));
