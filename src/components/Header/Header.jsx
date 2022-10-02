@@ -10,9 +10,6 @@ export default function PageHeader({ loggedUser, handleLogout, handleToggleMap }
   const { classes } = useStyles();
   const navigate = useNavigate();
 
-  function goHome() {
-    navigate('/')
-  }
 
   const mapIconColor = "white";
 

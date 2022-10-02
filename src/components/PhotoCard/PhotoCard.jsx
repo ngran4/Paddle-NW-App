@@ -13,7 +13,7 @@ import {
   ActionIcon,
   Indicator
 } from '@mantine/core';
-import { IconHeart, IconMap } from '@tabler/icons';
+import { IconHeart, IconCamera, IconUpload } from '@tabler/icons';
 import { Carousel } from '@mantine/carousel';
 // import { IconStar } from '@tabler/icons';
 
@@ -91,9 +91,9 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
   return (
     <Card key={location._id} withBorder p="xl" radius="md">
       <Card.Section>
-      <AspectRatio ratio={1920 / 1080}>
-        <Image src={cover} />
-      </AspectRatio>
+        <AspectRatio ratio={1920 / 1080}>
+          <Image src={cover} />
+        </AspectRatio>
       </Card.Section>
 
       <Group position="apart" mt="lg">
@@ -110,25 +110,31 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
         </Group>
       </Group>
 
-      <Group position="apart" mt="sm">
-        <form autoComplete="off" onSubmit={handleSubmit}>
+
+        <form autoComplete="off" onSubmit={handleSubmit} className={classes.form}>
           <FileInput
+            name="add-photo"
+            label="Upload Photo"
             placeholder="Choose File"
             className="form-control"
-            name="add-photo"
-            type="file"
             onChange={handleFileInput}
-            label="Upload Photo"
+            type="file"
+            size="sm"
+            icon={<IconUpload size={10} />}
             required
-            withAsterisk
+            fullWidth
           />
-          <Group spacing={5}>
-            <Button radius="sm" type="submit">
-              Submit
-            </Button>
-          </Group>
+        <Button fullWidth className={classes.button} size="xs" color="dark" type="submit">
+          Submit
+        </Button>
         </form>
-      </Group>
+
+    <Group position="right">
+    <ActionIcon>
+        <IconCamera size={100} color={ratingColor} stroke={1.5} onClick={clickHandler} />
+      </ActionIcon>
+    </Group>
+      
     </Card>
   )
 }
@@ -140,6 +146,14 @@ const useStyles = createStyles((theme, _params, getRef) => ({
   price: {
     color: theme.colorScheme === 'dark' ? theme.white : theme.black,
   },
+
+  form: {
+    marginTop: 8,
+    marginBottom: 10,
+  },
+  button: {
+    marginTop: 5,
+  }
 }));
 
 

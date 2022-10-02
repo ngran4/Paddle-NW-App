@@ -12,19 +12,16 @@ export default function Map({ locations, handleToggleMap }) {
   const map = useRef(null);
   const [lng, setLng] = useState(-122.67);
   const [lat, setLat] = useState(45.52);
-  const [zoom, setZoom] = useState(9);
+  const [zoom, setZoom] = useState(7);
 
   useEffect(() => {
-    if (map.current) return; // initialize map only once
+    if (map.current) return;
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v11',
       center: [lng, lat],
       zoom: zoom
     });
-
-    // console.log(map.current)
-    // console.log(locations, 'locations first UE')
 
   });
 
@@ -40,18 +37,13 @@ export default function Map({ locations, handleToggleMap }) {
 
   useEffect(() => {
     if (!map.current) return;
-    // console.log(map.current, 'current map')
-    // console.log(locations, 'locations second UE')
-
     if (!locations.length) return;
-    // console.log(locations[0].location.coordinates, 'locations0')
 
     locations.map((point) => {
       let marker = new mapboxgl.Marker()
         .setLngLat(point.location.coordinates)
         .addTo(map.current)
     });
-
 
   }, [locations.length])
 

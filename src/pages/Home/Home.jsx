@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, ActionIcon, Group } from '@mantine/core';
+import { createStyles, ActionIcon, Group } from '@mantine/core';
 import { IconMap, IconLayoutList } from '@tabler/icons';
 import PageHeader from "../../components/Header/Header";
 import LocationGallery from "../../components/LocationGallery/LocationGallery";
@@ -15,6 +15,7 @@ export default function Home({ loggedUser, handleLogout }) {
   const [toggleMap, setToggleMap] = useState(false);
   const [toggleList, setToggleList] = useState(true);
   const [error, setError] = useState("");
+  const { classes } = useStyles();
 
   function handleToggleMap() {
     setToggleMap(!toggleMap)
@@ -91,7 +92,7 @@ export default function Home({ loggedUser, handleLogout }) {
   return (
     <>
       <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
-      <Group position="right">
+      <Group position="center" className={classes.toggle} spacing={2}>
         <ActionIcon>
           <IconMap size={100} color={mapIconColor} stroke={1.5} onClick={handleToggleMap} />
         </ActionIcon>
@@ -114,3 +115,12 @@ export default function Home({ loggedUser, handleLogout }) {
     </>
   )
 }
+
+
+
+const useStyles = createStyles((theme, _params, getRef) => ({
+  toggle: {
+    marginTop: 15,
+    marginRight: 10,
+  }
+}));
