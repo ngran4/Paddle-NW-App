@@ -15,7 +15,14 @@ export default function LocationGallery({ locations, addPhoto, addRating, remove
       <SimpleGrid cols={2} breakpoints={[{ maxWidth: 'sm', cols: 1 }]}>
         {locations.map((location) => {
           return(
-            <PhotoCard location={location} key={location._id} addPhoto={addPhoto} addRating={addRating} removeRating={removeRating} loggedUser={loggedUser} />
+            <PhotoCard 
+            location={location} 
+            key={location._id} 
+            addPhoto={addPhoto} 
+            addRating={addRating} 
+            removeRating={removeRating} 
+            loggedUser={loggedUser} 
+            />
           )
         })}
       </SimpleGrid>

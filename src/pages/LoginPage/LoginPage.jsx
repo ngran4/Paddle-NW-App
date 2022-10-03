@@ -10,45 +10,11 @@ import {
   Text,
 } from '@mantine/core';
 
-// import "./LoginPage.css";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import userService from "../../utils/userService";
 
 
-const useStyles = createStyles((theme) => ({
-  wrapper: {
-    minHeight: 800,
-    backgroundSize: 'cover',
-    backgroundImage:
-      'url(https://images.unsplash.com/photo-1449942120512-7a6f1ea6b0c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fHdhdGVyfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=800&q=60)',
-  },
-
-  form: {
-    borderRight: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[3]
-    }`,
-    minHeight: 900,
-    maxWidth: 450,
-    paddingTop: 80,
-
-    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
-      maxWidth: '100%',
-    },
-  },
-
-  title: {
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-  },
-
-  logo: {
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-    width: 120,
-    display: 'block',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-  },
-}));
+// -------------------------- FUNCTION -------------------------- //
 
 export default function LoginPage(props) {
   const { classes } = useStyles();
@@ -123,3 +89,41 @@ export default function LoginPage(props) {
 
   );
 }
+
+
+// -------------------------- STYLING -------------------------- //
+
+const useStyles = createStyles((theme) => ({
+  wrapper: {
+    minHeight: 800,
+    backgroundSize: 'cover',
+    backgroundImage:
+      'url(https://images.unsplash.com/photo-1449942120512-7a6f1ea6b0c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fHdhdGVyfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=800&q=60)',
+  },
+
+  form: {
+    borderRight: `1px solid ${
+      theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[3]
+    }`,
+    minHeight: 900,
+    maxWidth: 450,
+    paddingTop: 80,
+
+    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+      maxWidth: '100%',
+    },
+  },
+
+  title: {
+    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+  },
+
+  logo: {
+    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    width: 120,
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+}));

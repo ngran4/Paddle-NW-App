@@ -14,12 +14,7 @@ export default function PageHeader({ loggedUser, handleLogout, handleToggleMap }
   const mapIconColor = "white";
 
   return (
-    <Header height={50} className={classes.header}>
-        {/* <Group position="left">
-          <ActionIcon>
-            <IconMap size={100} color={mapIconColor} stroke={1.5} onClick={handleToggleMap}/>
-          </ActionIcon>
-        </Group> */}
+    <Header height={55} className={classes.header}>
         <Group position="apart">
         <Group>
         <ActionIcon className={classes.icon}>
@@ -41,7 +36,7 @@ export default function PageHeader({ loggedUser, handleLogout, handleToggleMap }
 // -------------------------- STYLING -------------------------- //
 const useStyles = createStyles((theme) => ({
   header: {
-    backgroundColor: theme.fn.variant({ variant: 'filled', color: "dark" }).background,
+    backgroundColor: theme.fn.variant({ variant: 'filled', color:"dark" }).background,
     borderBottom: 0,
   },
 
@@ -53,17 +48,17 @@ const useStyles = createStyles((theme) => ({
   },
 
   name: {
-    marginTop: 8,
+    marginTop: 10,
     fontSize: 20,
     fontWeight: 400,
     color: "white",
   },
   icon: {
-    marginTop: 8,
+    marginTop: 10,
     marginLeft: 15,
   },
   button: {
-    marginTop: 5,
+    marginTop: 8,
   }
 
 }));

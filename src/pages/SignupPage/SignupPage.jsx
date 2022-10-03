@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   Paper,
   createStyles,
@@ -13,46 +13,14 @@ import {
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import userService from "../../utils/userService";
 
-const useStyles = createStyles((theme) => ({
-  wrapper: {
-    minHeight: 800,
-    backgroundSize: 'cover',
-    backgroundImage:
-      'url(https://images.unsplash.com/photo-1449942120512-7a6f1ea6b0c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fHdhdGVyfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=800&q=60)',
-  },
-
-  form: {
-    borderRight: `1px solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[3]
-    }`,
-    minHeight: 900,
-    maxWidth: 450,
-    paddingTop: 80,
-
-    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
-      maxWidth: '100%',
-    },
-  },
-
-  title: {
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-  },
-
-  logo: {
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-    width: 120,
-    display: 'block',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-  },
-}));
+// -------------------------- FUNCTION -------------------------- //
 
 function isPasswordMatch(passwordOne, passwordConf) {
   return passwordOne === passwordConf;
 }
 
 export default function SignUpPage(props) {
+  const navigate = useNavigate();
   const { classes } = useStyles();
   const [selectedFile, setSelectedFile] = useState("")
 
@@ -67,10 +35,6 @@ export default function SignUpPage(props) {
     password: "",
     passwordConf: "",
   });
-
-  // initialized the react router hook, which allows you to programatically
-  // change routes, aka after our signup call in the handleSubmit
-  const navigate = useNavigate();
 
   function handleChange(e) {
     console.log(e, 'e in handle change')
@@ -176,6 +140,10 @@ export default function SignUpPage(props) {
         <Button fullWidth mt="xl" size="md" type="submit">
           Sign Up
         </Button>
+        <Text align="center" mt="md">
+          Already have an account? {' '}
+          <Link to="/login">Log In</Link>
+        </Text>
         {error.message ? <ErrorMessage error={error.message} /> : null}
         </Paper>
       </form>
@@ -185,5 +153,40 @@ export default function SignUpPage(props) {
 }
 
 
+// -------------------------- STYLING -------------------------- //
 
 
+const useStyles = createStyles((theme) => ({
+  wrapper: {
+    minHeight: 800,
+    backgroundSize: 'cover',
+    backgroundImage:
+      'url(https://images.unsplash.com/photo-1449942120512-7a6f1ea6b0c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fHdhdGVyfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=800&q=60)',
+  },
+
+  form: {
+    borderRight: `1px solid ${
+      theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[3]
+    }`,
+    minHeight: 900,
+    maxWidth: 450,
+    paddingTop: 80,
+
+    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+      maxWidth: '100%',
+    },
+  },
+
+  title: {
+    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+  },
+
+  logo: {
+    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+    width: 120,
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+}));

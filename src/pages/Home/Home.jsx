@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { createStyles, ActionIcon, Group } from '@mantine/core';
 import { IconMap, IconLayoutList } from '@tabler/icons';
+
 import PageHeader from "../../components/Header/Header";
 import LocationGallery from "../../components/LocationGallery/LocationGallery";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
@@ -10,12 +11,17 @@ import * as ratingsAPI from "../../utils/ratingsApi";
 
 import Map from "../../components/Map/Map"
 
+
+// -------------------------- FUNCTION -------------------------- //
+
 export default function Home({ loggedUser, handleLogout }) {
   const [locations, setLocations] = useState([]);
   const [toggleMap, setToggleMap] = useState(false);
   const [toggleList, setToggleList] = useState(true);
   const [error, setError] = useState("");
   const { classes } = useStyles();
+
+  const mapIconColor = "white";
 
   function handleToggleMap() {
     setToggleMap(!toggleMap)
@@ -26,8 +32,6 @@ export default function Home({ loggedUser, handleLogout }) {
     setToggleList(!toggleList)
     setToggleMap(!toggleMap)
   }
-
-  const mapIconColor = "white";
 
   async function addPhoto(locationId, photo) {
     try {
@@ -89,6 +93,7 @@ export default function Home({ loggedUser, handleLogout }) {
       </>
     );
   }
+  
   return (
     <>
       <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
@@ -106,9 +111,16 @@ export default function Home({ loggedUser, handleLogout }) {
           <Map locations={locations} />
         </Group>
       )}
-      { toggleList && (
+      {toggleList && (
         <Group position="center">
-          <LocationGallery locations={locations} addPhoto={addPhoto} addRating={addRating} removeRating={removeRating} loggedUser={loggedUser} />
+          <LocationGallery
+            locations={locations}
+            addPhoto={addPhoto}
+            addRating={addRating}
+            removeRating={removeRating}
+            loggedUser={loggedUser}
+          // handleOpenModal={handleOpenModal}
+          />
         </Group>
       )}
 
@@ -116,7 +128,7 @@ export default function Home({ loggedUser, handleLogout }) {
   )
 }
 
-
+// -------------------------- STYLING -------------------------- //
 
 const useStyles = createStyles((theme, _params, getRef) => ({
   toggle: {

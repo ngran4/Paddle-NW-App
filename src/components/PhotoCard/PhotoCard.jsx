@@ -1,67 +1,37 @@
 import React, { useState } from 'react';
 import {
-  createStyles,
-  SimpleGrid,
+  ActionIcon,
+  AspectRatio,
+  Button,
   Card,
+  createStyles,
+  FileInput,
   Group,
   Image,
+  Indicator,
   Text,
-  Container,
-  AspectRatio,
-  FileInput,
-  Button,
-  ActionIcon,
-  Indicator
+  Modal,
+  useMantineTheme
 } from '@mantine/core';
 import { IconHeart, IconCamera, IconUpload } from '@tabler/icons';
-import { Carousel } from '@mantine/carousel';
-// import { IconStar } from '@tabler/icons';
+import ModalCmpt from "../Modal/Modal"
 
 
 // -------------------------- FUNCTION -------------------------- //
 
 export default function PhotoCard({ location, addPhoto, addRating, removeRating, loggedUser }) {
   const { classes } = useStyles();
+  const theme = useMantineTheme();
   const [selectedFile, setSelectedFile] = useState("");
+  const [modalOpen, setModalOpen] = useState(false);
+
+
+  function handleOpenModal() {
+    setModalOpen(true)
+  };
+
 
   const cover = `${location?.cover}`
-
-  // const slides = location[0]?.photoUrl[0]?.photoUrl
-
-  // console.log(location[0]?.photoUrl[0]?.photoUrl, 'location photo url')
-
-  // const slides = location?.photoUrl?.map((image) => {
-  //   <Carousel.Slide key={image}>
-  //     <Image src={image} height={220} />
-  //   </Carousel.Slide>
-  // })
-
-  // console.log(slides, 'slides')
-
-
-  // const slides = locationPhotoUrl.map((image) => (
-  //   <Carousel.Slide key={image}>
-  //     <Image src={image} height={220} />
-  //   </Carousel.Slide>
-  // ));
-
-  // const slides = function getPhoto() {
-  //   for (let i = 0; i < locationPhotoUrl.length; i++) {
-  //     console.log(locationPhotoUrl[i].photoUrl)
-  //     const url = `${locationPhotoUrl[i].photoUrl}`;
-
-  //     return (<Carousel.Slide key={i}>
-  //       <Image src={url} height={220} />
-  //     </Carousel.Slide>)
-  //   }
-  // }
-
-  //   const slides = locationPhotoUrl.forEach(function (image) {
-  //     <Carousel.Slide key={image.photoUrl}>
-  //       <Image src={image.photoUrl} height={220} />
-  //     </Carousel.Slide>
-  // });
-
 
   const ratingIndex = location.ratings.findIndex(
     (rating) => rating.username === loggedUser.username
@@ -77,7 +47,7 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
 
   function handleFileInput(e) {
     setSelectedFile(e)
-  }
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -85,30 +55,50 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
     const formData = new FormData();
     formData.append('photo', selectedFile)
     addPhoto(location._id, formData)
-  }
+  };
 
+  // function displayPhotos(){
+  //  
+
+  // }
+
+  // console.log(slides, 'these are the slides')
+  // console.log(location)
+  // const slides = location[0]?.photoUrl[0]?.photoUrl
+  // console.log(location[0]?.photoUrl[0]?.photoUrl, 'location photo url')
 
   return (
-    <Card key={location._id} withBorder p="xl" radius="md">
-      <Card.Section>
-        <AspectRatio ratio={1920 / 1080}>
-          <Image src={cover} />
-        </AspectRatio>
-      </Card.Section>
+    <>
+      { modalOpen && 
+      <ModalCmpt 
+      setModalOpen={setModalOpen} 
+      location={location}
+      overlayColor={theme.colorScheme === 'dark' ? theme.colors.dark[9] : theme.colors.gray[2]}
+      overlayOpacity={0.55}
+      overlayBlur={3}
+      />
+      }
 
-      <Group position="apart" mt="lg">
-        <Text weight={500} size="lg">
-          {location.name}
-        </Text>
+      <Card key={location._id} withBorder p="xl" radius="md">
+        <Card.Section>
+          <AspectRatio ratio={1920 / 1080}>
+            <Image src={cover} />
+          </AspectRatio>
+        </Card.Section>
 
-        <Group spacing={5}>
-          <Indicator label={ratingCount} inline size={15} >
-            <ActionIcon>
-              <IconHeart size={100} color={ratingColor} stroke={1.5} onClick={clickHandler} />
-            </ActionIcon>
-          </Indicator>
+        <Group position="apart" mt="lg">
+          <Text weight={500} size="lg">
+            {location.name}
+          </Text>
+
+          <Group spacing={5}>
+            <Indicator label={ratingCount} color="cyan" inline size={15} >
+              <ActionIcon>
+                <IconHeart size={100} color={ratingColor} stroke={1.5} onClick={clickHandler} />
+              </ActionIcon>
+            </Indicator>
+          </Group>
         </Group>
-      </Group>
 
 
         <form autoComplete="off" onSubmit={handleSubmit} className={classes.form}>
@@ -124,18 +114,19 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
             required
             fullWidth
           />
-        <Button fullWidth className={classes.button} size="xs" color="dark" type="submit">
-          Submit
-        </Button>
+          <Button fullWidth className={classes.button} size="xs" color="dark" type="submit">
+            Submit
+          </Button>
         </form>
 
-    <Group position="right">
-    <ActionIcon>
-        <IconCamera size={100} color={ratingColor} stroke={1.5} onClick={clickHandler} />
-      </ActionIcon>
-    </Group>
-      
-    </Card>
+        <Group position="right">
+          <ActionIcon>
+            <IconCamera size={100} stroke={1.5} onClick={handleOpenModal} />
+          </ActionIcon>
+        </Group>
+
+      </Card>
+    </>
   )
 }
 
@@ -157,50 +148,3 @@ const useStyles = createStyles((theme, _params, getRef) => ({
 }));
 
 
-
-
-// {/* <Card.Section>
-// {/* <Carousel
-//   withIndicators
-//   loop
-//   classNames={{
-//     root: classes.carousel,
-//     controls: classes.carouselControls,
-//     indicator: classes.carouselIndicator,
-//   }}
-// >
-//   {slides}
-// </Carousel> */}
-// </Card.Section>
-
-// <Group position="apart" mt="lg">
-// <Text weight={500} size="lg">
-//   {location.name}
-// </Text>
-
-// <Group spacing={5}>
-//   <Indicator label={ratingCount} inline size={15} >
-//     <ActionIcon>
-//       <IconHeart size={100} color={ratingColor} stroke={1.5} onClick={clickHandler} />
-//     </ActionIcon>
-//   </Indicator>
-// </Group>
-// </Group>
-
-// <Group position="apart" mt="md">
-// <form autoComplete="off" onSubmit={handleSubmit}>
-//   <FileInput
-//     placeholder="Choose File"
-//     className="form-control"
-//     name="playlist-cover"
-//     type="file"
-//     onChange={handleFileInput}
-//     label="Upload Photo"
-//     required
-//     withAsterisk
-//   />
-//   <Button radius="md" type="submit">
-//     Submit
-//   </Button>
-// </form>
-// </Group> */}
