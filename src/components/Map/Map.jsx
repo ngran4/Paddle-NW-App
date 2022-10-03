@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 // import locationsArr from "../../../seeds"
 
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 mapboxgl.accessToken = 'pk.eyJ1IjoibmljZ3JhbnZpbGxlIiwiYSI6ImNsOGtvMWF3cjAwOG8zcHFqbHNncGJsaTEifQ.a3Eza0hWXvPF9UxW3lR3HA';
 
 // -------------------------- FUNCTION -------------------------- //
