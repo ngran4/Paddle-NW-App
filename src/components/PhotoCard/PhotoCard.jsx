@@ -73,9 +73,7 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
       <ModalCmpt 
       setModalOpen={setModalOpen} 
       location={location}
-      overlayColor={theme.colorScheme === 'dark' ? theme.colors.dark[9] : theme.colors.gray[2]}
-      overlayOpacity={0.55}
-      overlayBlur={3}
+      size="md"
       />
       }
 

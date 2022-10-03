@@ -22,8 +22,8 @@ export default function Map({ locations, handleToggleMap }) {
       center: [lng, lat],
       zoom: zoom
     });
-
   });
+
 
   useEffect(() => {
     if (!map.current) return; // wait for map to initialize
@@ -34,7 +34,6 @@ export default function Map({ locations, handleToggleMap }) {
     });
   })
 
-
   useEffect(() => {
     if (!map.current) return;
     if (!locations.length) return;
@@ -42,6 +41,7 @@ export default function Map({ locations, handleToggleMap }) {
     locations.map((point) => {
       let marker = new mapboxgl.Marker()
         .setLngLat(point.location.coordinates)
+        .setPopup(new mapboxgl.Popup().setHTML(<h4> + location.name + </h4>))
         .addTo(map.current)
     });
 

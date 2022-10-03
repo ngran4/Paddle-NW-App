@@ -3,26 +3,27 @@ import {
   Modal,
   Group,
   ActionIcon,
-  Image
+  Image,
+  createStyles
 } from '@mantine/core';
 import { IconX } from '@tabler/icons';
 
-export default function ModalCmpt({ location, setModalOpen }) {
-  // const [mainImage, setMainImage] = useState("");
-  const [imageUrls, setImageUrls] = useState(0);
-  const [allImages, setAllImages] = useState([])
-  // const imageString = location?.photoUrl;
-  // const slides = location?.photoUrl?.map((image) => {
-  //   <Image src={image.photoUrl} />
-  // })
 
-  // function displayImages(){
-  //   let slides = [];
-  //   for (let i=0; i < allImages.length; i++) {
-  //     slides.push(images={allImages[i]} imageString={allImages[i].location.photoUrl})
-  //   }
-  //  return (slides)
-  // }
+// -------------------------- FUNCTION -------------------------- //
+
+export default function ModalCmpt({ location, setModalOpen }) {
+  const { classes } = useStyles();
+
+  function displayImages(){
+    let slides = [];
+    for (let i=0; i < location?.photoUrl?.length; i++) {
+      console.log(location.photoUrl[i])
+      slides.push(
+        <Image src={location.photoUrl[i].photoUrl} className={classes.image} />
+        )
+    }
+    return slides
+  }
 
 
   // function changeImage() { 
@@ -58,25 +59,19 @@ export default function ModalCmpt({ location, setModalOpen }) {
             <IconX size={100} onClick={() => setModalOpen(false)} />
           </ActionIcon>
         </Group>
-
-        {/* {
-          function displayImages() {
-            let slides = [];
-            for (let i = 0; i < allImages.length; i++) {
-              slides.push(
-                <Image images = {allImages[i]} imageString = { allImages[i].location.photoUrl} />)
-            }
-            return (slides)
-          }
-        } */}
-
-        {/* {location.photoUrl.forEach((image) => { 
-          < Image src = { image.photoUrl } />
-            console.log(image.photoUrl)
-        })} */}
-
+        {
+          displayImages()
+        }
       </Group>
 
     </div>
   )
 }
+
+// -------------------------- STYLING -------------------------- //
+const useStyles = createStyles((theme, _params, getRef) => ({
+  image: {
+    height: 400,
+    width: 200
+  }
+}));
