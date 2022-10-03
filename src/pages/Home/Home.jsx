@@ -20,7 +20,6 @@ export default function Home({ loggedUser, handleLogout }) {
   const [toggleList, setToggleList] = useState(true);
   const [error, setError] = useState("");
   const { classes } = useStyles();
-  const [modalOpen, setModalOpen] = useState(false);
 
 
   const mapIconColor = "white";

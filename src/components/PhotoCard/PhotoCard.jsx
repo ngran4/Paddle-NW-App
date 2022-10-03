@@ -60,15 +60,15 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
   };
 
 
-  if (modalOpen){
+  if (modalOpen) {
     return (
       <Card withBorder>
 
-              <ModalCmpt
-      setModalOpen={setModalOpen}
-      location={location}
-      size="md"
-    />
+        <ModalCmpt
+          setModalOpen={setModalOpen}
+          location={location}
+          size="md"
+        />
       </Card>
     )
   }
