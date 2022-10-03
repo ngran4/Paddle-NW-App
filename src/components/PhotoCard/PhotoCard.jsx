@@ -47,6 +47,7 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
 
   function handleFileInput(e) {
     setSelectedFile(e)
+    setSelectedFile("");
   };
 
   function handleSubmit(e) {
@@ -55,8 +56,6 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
     const formData = new FormData();
     formData.append('photo', selectedFile)
     addPhoto(location._id, formData)
-
-    setSelectedFile("");
   };
 
 
