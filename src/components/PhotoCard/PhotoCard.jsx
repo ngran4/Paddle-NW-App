@@ -97,7 +97,6 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
           />
         }
 
-
         <form autoComplete="off" onSubmit={handleSubmit} className={classes.form}>
           <FileInput
             name="add-photo"
