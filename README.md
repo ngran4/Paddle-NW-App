@@ -4,8 +4,8 @@ Paddle NW was designed for people who love to be on the water (whether it's kaya
 
 ## Visuals
 ![Imgur](https://i.imgur.com/DdikoZXl.png)
-![Imgur](https://i.imgur.com/ldfFrpkl.png)
 ![Imgur](https://i.imgur.com/iCnap31l.png)
+![Imgur](https://i.imgur.com/SEyIV3il.png)
 ![Imgur](https://i.imgur.com/khgGQeUl.png)
 
 ## Technologies Used
