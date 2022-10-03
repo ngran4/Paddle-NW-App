@@ -5,7 +5,8 @@ import {
   ActionIcon,
   Image,
   createStyles,
-  Card
+  Card,
+  AspectRatio
 } from '@mantine/core';
 import { IconX, IconArrowRight, IconArrowLeft } from '@tabler/icons';
 
@@ -79,21 +80,23 @@ export default function ModalCmpt({ location, setModalOpen }) {
     <div key={location._id}>
       <Group position="right" className={classes.image} >
         <ActionIcon>
-          <IconX size={100} onClick={() => setModalOpen(false)}/>
+          <IconX size={100} onClick={() => setModalOpen(false)} />
         </ActionIcon>
-        {
-          displayImages()
-        }
+        <Card.Section>
+          {
+            displayImages()
+          }
+        </Card.Section>
       </Group>
+      <br />
       <Group position="center">
-          <ActionIcon>
-            <IconArrowLeft size={100} onClick={prevSlide} />
-          </ActionIcon>
-          <ActionIcon>
-            <IconArrowRight size={100} onClick={nextSlide} />
-          </ActionIcon>
-        </Group>
-
+        <ActionIcon>
+          <IconArrowLeft size={100} onClick={prevSlide} />
+        </ActionIcon>
+        <ActionIcon>
+          <IconArrowRight size={100} onClick={nextSlide} />
+        </ActionIcon>
+      </Group>
     </div>
   )
 }

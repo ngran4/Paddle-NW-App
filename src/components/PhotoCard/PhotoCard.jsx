@@ -67,6 +67,18 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
   // const slides = location[0]?.photoUrl[0]?.photoUrl
   // console.log(location[0]?.photoUrl[0]?.photoUrl, 'location photo url')
 
+  if (modalOpen){
+    return (
+      <Card withBorder>
+
+              <ModalCmpt
+      setModalOpen={setModalOpen}
+      location={location}
+      size="md"
+    />
+      </Card>
+    )
+  }
   return (
     <>
       <Card key={location._id} withBorder p="xl" radius="md">
@@ -88,14 +100,14 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
             </Indicator>
           </Group>
         </Group>
-
+{/* 
         {modalOpen &&
           <ModalCmpt
             setModalOpen={setModalOpen}
             location={location}
             size="md"
           />
-        }
+        } */}
 
         <form autoComplete="off" onSubmit={handleSubmit} className={classes.form}>
           <FileInput
