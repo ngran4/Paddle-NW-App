@@ -6,21 +6,22 @@ import {
   Image,
   createStyles
 } from '@mantine/core';
-import { IconX } from '@tabler/icons';
+import { IconX, IconArrowRight, IconArrowLeft } from '@tabler/icons';
 
 
 // -------------------------- FUNCTION -------------------------- //
 
 export default function ModalCmpt({ location, setModalOpen }) {
   const { classes } = useStyles();
+  const [current, setCurrent] = useState(0)
 
-  function displayImages(){
+  function displayImages() {
     let slides = [];
-    for (let i=0; i < location?.photoUrl?.length; i++) {
+    for (let i = 0; i < location?.photoUrl?.length; i++) {
       console.log(location.photoUrl[i])
       slides.push(
         <Image src={location.photoUrl[i].photoUrl} className={classes.image} />
-        )
+      )
     }
     return slides
   }
@@ -53,12 +54,10 @@ export default function ModalCmpt({ location, setModalOpen }) {
 
   return (
     <div key={location._id}>
-      <Group>
-        <Group position="right">
-          <ActionIcon>
-            <IconX size={100} onClick={() => setModalOpen(false)} />
-          </ActionIcon>
-        </Group>
+      <Group position="right" className={classes.image} >
+        <ActionIcon>
+          <IconX size={100} onClick={() => setModalOpen(false)} />
+        </ActionIcon>
         {
           displayImages()
         }
@@ -71,7 +70,13 @@ export default function ModalCmpt({ location, setModalOpen }) {
 // -------------------------- STYLING -------------------------- //
 const useStyles = createStyles((theme, _params, getRef) => ({
   image: {
-    height: 400,
-    width: 200
+    height: 600,
+    width: 400
+  },
+  rightArrow: {
+    
+  },
+  leftArrow: {
+    
   }
 }));

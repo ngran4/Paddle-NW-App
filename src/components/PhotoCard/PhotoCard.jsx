@@ -14,7 +14,7 @@ import {
   useMantineTheme
 } from '@mantine/core';
 import { IconHeart, IconCamera, IconUpload } from '@tabler/icons';
-import ModalCmpt from "../Modal/Modal"
+import ModalCmpt from "../../components/Modal/Modal"
 
 
 // -------------------------- FUNCTION -------------------------- //
@@ -69,21 +69,12 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
 
   return (
     <>
-      { modalOpen && 
-      <ModalCmpt 
-      setModalOpen={setModalOpen} 
-      location={location}
-      size="md"
-      />
-      }
-
       <Card key={location._id} withBorder p="xl" radius="md">
         <Card.Section>
           <AspectRatio ratio={1920 / 1080}>
             <Image src={cover} />
           </AspectRatio>
         </Card.Section>
-
         <Group position="apart" mt="lg">
           <Text weight={500} size="lg">
             {location.name}
@@ -97,6 +88,14 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
             </Indicator>
           </Group>
         </Group>
+
+        {modalOpen &&
+          <ModalCmpt
+            setModalOpen={setModalOpen}
+            location={location}
+            size="md"
+          />
+        }
 
 
         <form autoComplete="off" onSubmit={handleSubmit} className={classes.form}>
@@ -142,7 +141,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
   },
   button: {
     marginTop: 5,
-  }
+  },
 }));
 
 

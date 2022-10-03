@@ -21,7 +21,7 @@ export default function LocationGallery({ locations, addPhoto, addRating, remove
             addPhoto={addPhoto} 
             addRating={addRating} 
             removeRating={removeRating} 
-            loggedUser={loggedUser} 
+            loggedUser={loggedUser}
             />
           )
         })}

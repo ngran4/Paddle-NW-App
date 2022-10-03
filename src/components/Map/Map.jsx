@@ -14,6 +14,7 @@ export default function Map({ locations, handleToggleMap }) {
   const [lat, setLat] = useState(45.52);
   const [zoom, setZoom] = useState(7);
 
+
   useEffect(() => {
     if (map.current) return;
     map.current = new mapboxgl.Map({
@@ -41,7 +42,12 @@ export default function Map({ locations, handleToggleMap }) {
     locations.map((point) => {
       let marker = new mapboxgl.Marker()
         .setLngLat(point.location.coordinates)
-        .setPopup(new mapboxgl.Popup().setHTML(<h4> + location.name + </h4>))
+        .setPopup(new mapboxgl.Popup().setHTML(
+          `<h4> ${point.name} </h4>
+          <p> ${point.address} </p>
+          <p> ${point.city} , ${point.state} </p>
+          `
+          ))
         .addTo(map.current)
     });
 

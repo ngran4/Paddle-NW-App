@@ -20,6 +20,8 @@ export default function Home({ loggedUser, handleLogout }) {
   const [toggleList, setToggleList] = useState(true);
   const [error, setError] = useState("");
   const { classes } = useStyles();
+  const [modalOpen, setModalOpen] = useState(false);
+
 
   const mapIconColor = "white";
 
@@ -93,7 +95,7 @@ export default function Home({ loggedUser, handleLogout }) {
       </>
     );
   }
-  
+
   return (
     <>
       <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
@@ -119,7 +121,6 @@ export default function Home({ loggedUser, handleLogout }) {
             addRating={addRating}
             removeRating={removeRating}
             loggedUser={loggedUser}
-          // handleOpenModal={handleOpenModal}
           />
         </Group>
       )}
@@ -134,5 +135,5 @@ const useStyles = createStyles((theme, _params, getRef) => ({
   toggle: {
     marginTop: 15,
     marginRight: 10,
-  }
+  },
 }));
