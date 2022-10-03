@@ -19,6 +19,7 @@ export default function ModalCmpt({ location, setModalOpen }) {
   const length = location?.photoUrl?.length
 
   const nextSlide = () => {
+     // when user reaches last photo, go back to first
     setCurrent(current === length - 1 ? 0 : current + 1)
   }
 
@@ -26,8 +27,6 @@ export default function ModalCmpt({ location, setModalOpen }) {
     setCurrent(current === 0 ? length - 1 : current - 1)
   }
 
-  console.log(current)
-  // total # imgs in array, if it gets to one less than length of array, go back to 1st
 
   function displayImages() {
     let slides = [];
@@ -48,32 +47,6 @@ export default function ModalCmpt({ location, setModalOpen }) {
   if (!Array.isArray(location?.photoUrl) || location?.photoUrl?.length <= 0) {
     return null;
   }
-
-
-
-  // function changeImage() { 
-  //   setMainImage(location?.photoUrl)
-  // }
-
-  // function nextImage(){
-  //   const idx = imageUrls.indexOf(imageString)
-  //   const sliceArray
-  // }
-
-  // function nextImage() {
-  //   const index = imageUrls.indexOf(imageString)
-  //   const sliceArray = imageUrls.slice(index + 1)
-  //   const newArray = sliceArray.concat(imageUrls)
-  //   let stop = false;
-  //   for (let i =0; i < newArray.length; i++) {
-  //       if (stop == false) {
-  //           let name = newArray[i];
-  //               setImageString(name)
-  //               stop = true        
-  //       } 
-  //   }       
-  // }
-
 
 
   return (
