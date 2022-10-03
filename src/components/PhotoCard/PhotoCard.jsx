@@ -55,17 +55,10 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
     const formData = new FormData();
     formData.append('photo', selectedFile)
     addPhoto(location._id, formData)
+
+    setSelectedFile("");
   };
 
-  // function displayPhotos(){
-  //  
-
-  // }
-
-  // console.log(slides, 'these are the slides')
-  // console.log(location)
-  // const slides = location[0]?.photoUrl[0]?.photoUrl
-  // console.log(location[0]?.photoUrl[0]?.photoUrl, 'location photo url')
 
   if (modalOpen){
     return (
@@ -100,14 +93,6 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
             </Indicator>
           </Group>
         </Group>
-{/* 
-        {modalOpen &&
-          <ModalCmpt
-            setModalOpen={setModalOpen}
-            location={location}
-            size="md"
-          />
-        } */}
 
         <form autoComplete="off" onSubmit={handleSubmit} className={classes.form}>
           <FileInput
