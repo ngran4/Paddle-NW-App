@@ -21,7 +21,7 @@ Paddle NW was designed for people who love to be on the water (whether it's kaya
 [Project Planning - Trello](https://trello.com/b/WcjIxYUH/project-3)
 
 ## IceBox
-- Profile view to see all of the photos you have posted
+- Link to Google/Apple maps for directions
 - Save option to mark places you would like to go
 - Location rating/reviews section
 - Option to add new locations
