@@ -30,7 +30,6 @@ export default function PhotoCard({ location, addPhoto, addRating, removeRating,
     setModalOpen(true)
   };
 
-
   const cover = `${location?.cover}`
 
   const ratingIndex = location.ratings.findIndex(
