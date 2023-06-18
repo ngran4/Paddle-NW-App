@@ -16,8 +16,6 @@ import Map from "../../components/Map/Map"
 
 export default function Home({ loggedUser, handleLogout }) {
   const [locations, setLocations] = useState([]);
-  // const [toggleMap, setToggleMap] = useState(false);
-  // const [toggleList, setToggleList] = useState(true);
 
   const [activeView, setActiveView] = useState('list');
 
@@ -27,16 +25,6 @@ export default function Home({ loggedUser, handleLogout }) {
 
 
   const mapIconColor = "white";
-
-  // function handleToggleMap() {
-  //   setToggleMap(!toggleMap)
-  //   setToggleList(!toggleList)
-  // };
-
-  // function handleToggleList() {
-  //   setToggleList(!toggleList)
-  //   setToggleMap(!toggleMap)
-  // }
 
   function handleToggleMap() {
     setActiveView('map')
