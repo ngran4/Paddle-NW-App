@@ -16,22 +16,34 @@ import Map from "../../components/Map/Map"
 
 export default function Home({ loggedUser, handleLogout }) {
   const [locations, setLocations] = useState([]);
-  const [toggleMap, setToggleMap] = useState(false);
-  const [toggleList, setToggleList] = useState(true);
+  // const [toggleMap, setToggleMap] = useState(false);
+  // const [toggleList, setToggleList] = useState(true);
+
+  const [activeView, setActiveView] = useState('list');
+
+
   const [error, setError] = useState("");
   const { classes } = useStyles();
 
 
   const mapIconColor = "white";
 
+  // function handleToggleMap() {
+  //   setToggleMap(!toggleMap)
+  //   setToggleList(!toggleList)
+  // };
+
+  // function handleToggleList() {
+  //   setToggleList(!toggleList)
+  //   setToggleMap(!toggleMap)
+  // }
+
   function handleToggleMap() {
-    setToggleMap(!toggleMap)
-    setToggleList(!toggleList)
+    setActiveView('map')
   };
 
   function handleToggleList() {
-    setToggleList(!toggleList)
-    setToggleMap(!toggleMap)
+    setActiveView('list')
   }
 
   async function addPhoto(locationId, photo) {
@@ -99,20 +111,24 @@ export default function Home({ loggedUser, handleLogout }) {
     <>
       <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
       <Group position="center" className={classes.toggle} spacing={2}>
+        {activeView === 'list' && (
         <ActionIcon>
           <IconMap size={100} color={mapIconColor} stroke={1.5} onClick={handleToggleMap} />
         </ActionIcon>
+        )}
+        {activeView === 'map' && (
         <ActionIcon>
           <IconLayoutList size={100} color={mapIconColor} stroke={1.5} onClick={handleToggleList} />
         </ActionIcon>
+        )}
       </Group>
 
-      {toggleMap && (
+      {activeView === 'map' && (
         <Group position="center">
           <Map locations={locations} />
         </Group>
       )}
-      {toggleList && (
+      {activeView === 'list' && (
         <Group position="center">
           <LocationGallery
             locations={locations}
@@ -133,6 +149,5 @@ export default function Home({ loggedUser, handleLogout }) {
 const useStyles = createStyles((theme, _params, getRef) => ({
   toggle: {
     marginTop: 15,
-    marginRight: 10,
   },
 }));
