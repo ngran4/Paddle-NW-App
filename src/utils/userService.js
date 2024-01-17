@@ -2,7 +2,6 @@ import tokenService from './tokenService';
 
 const BASE_URL = '/api/users/';
 
-
 // NOTE THIS IS configured to send of a multi/part form request
 // aka photo 
 function signup(user) {
