@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-mapboxgl.accessToken = 'pk.eyJ1IjoibmljZ3JhbnZpbGxlIiwiYSI6ImNsOGtvMWF3cjAwOG8zcHFqbHNncGJsaTEifQ.a3Eza0hWXvPF9UxW3lR3HA';
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_PK
 
 // -------------------------- FUNCTION -------------------------- //
 
